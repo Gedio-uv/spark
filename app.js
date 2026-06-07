@@ -45,6 +45,7 @@ const Spark = (() => {
       levelAdvanced: 'Advanced',
       swipeHint: 'Swipe for next question',
       exitGame: 'Stop',
+      exampleLabel: 'Example answer',
       sessionEnd: 'Time\'s up!',
       questionsPlayed: 'questions explored',
       playAgain: 'Play again',
@@ -74,6 +75,7 @@ const Spark = (() => {
       levelAdvanced: 'Avanzado',
       swipeHint: 'Desliza para la siguiente pregunta',
       exitGame: 'Salir',
+      exampleLabel: 'Ejemplo de respuesta',
       sessionEnd: '¡Se acabó el tiempo!',
       questionsPlayed: 'preguntas exploradas',
       playAgain: 'Jugar de nuevo',
@@ -103,6 +105,7 @@ const Spark = (() => {
       levelAdvanced: 'Fortgeschritten',
       swipeHint: 'Wischen für nächste Frage',
       exitGame: 'Beenden',
+      exampleLabel: 'Beispielantwort',
       sessionEnd: 'Zeit ist um!',
       questionsPlayed: 'Fragen erkundet',
       playAgain: 'Nochmal spielen',
@@ -132,6 +135,7 @@ const Spark = (() => {
       levelAdvanced: 'Продвинутый',
       swipeHint: 'Смахните для следующего вопроса',
       exitGame: 'Выйти',
+      exampleLabel: 'Пример ответа',
       sessionEnd: 'Время вышло!',
       questionsPlayed: 'вопросов просмотрено',
       playAgain: 'Играть снова',
@@ -232,6 +236,18 @@ const Spark = (() => {
     };
   }
 
+  function getExampleDisplay(question) {
+    const prefs = getPrefs();
+    if (prefs.mode !== 'learn' || prefs.level !== 'basic' || !question.exampleAnswer) {
+      return null;
+    }
+
+    return {
+      primary: localizedText(question.exampleAnswer, prefs.nativeLang),
+      translation: localizedText(question.exampleAnswer, prefs.targetLang),
+    };
+  }
+
   function getFeedback() {
     try {
       return JSON.parse(localStorage.getItem(STORAGE_KEYS.feedback) || '{}');
@@ -308,6 +324,7 @@ const Spark = (() => {
     loadCategories,
     loadQuestions,
     getQuestionDisplay,
+    getExampleDisplay,
     getFeedback,
     logDislike,
     startSession,

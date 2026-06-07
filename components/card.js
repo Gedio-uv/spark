@@ -11,10 +11,12 @@ const SparkCard = (() => {
     const prefs = Spark.getPrefs();
     const lang = prefs.nativeLang;
     const display = Spark.getQuestionDisplay(question);
+    const example = Spark.getExampleDisplay(question);
     const category = categories.find((c) => c.id === question.category);
     const categoryName = category
       ? Spark.localizedText(category.name, lang)
       : question.category;
+    const showLevelTag = prefs.mode === 'learn' && prefs.level !== 'advanced';
 
     container.innerHTML = `
       <div class="card" id="question-card">
@@ -22,11 +24,18 @@ const SparkCard = (() => {
         <div class="card__glow-pink"></div>
         <div class="card__meta">
           <span class="card__category">${categoryName}</span>
-          ${prefs.mode === 'learn' ? `<span class="card__level">${question.level}</span>` : ''}
+          ${showLevelTag ? `<span class="card__level">${question.level}</span>` : ''}
         </div>
         <div class="card__body">
           <p class="card__question">${display.primary}</p>
           ${display.translation ? `<p class="card__translation">${display.translation}</p>` : ''}
+          ${example ? `
+            <div class="card__example">
+              <p class="card__example-label">${Spark.t('exampleLabel')}</p>
+              <p class="card__example-text">${example.primary}</p>
+              <p class="card__example-translation">${example.translation}</p>
+            </div>
+          ` : ''}
         </div>
         <div class="card__footer">
           <span>${Spark.t('swipeHint')}</span>

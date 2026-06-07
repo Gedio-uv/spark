@@ -8,6 +8,12 @@
         "de": "Welchen Ort wolltest du schon immer besuchen?",
         "ru": "Какое место вы всегда мечтали посетить?"
       },
+      "exampleAnswer": {
+        "en": "Japan — I've always wanted to see Kyoto.",
+        "es": "Japón — siempre quise ver Kioto.",
+        "de": "Japan — ich wollte schon immer Kyoto sehen.",
+        "ru": "Япония — я всегда мечтал увидеть Киото."
+      },
       "category": "general",
       "type": "open",
       "level": "basic",
@@ -21,6 +27,12 @@
         "es": "¿Cuál es tu comida reconfortante y por qué?",
         "de": "Was ist dein Lieblings-Trostessen und warum?",
         "ru": "Какая еда вас успокаивает и почему?"
+      },
+      "exampleAnswer": {
+        "en": "Pizza — it reminds me of Friday nights at home.",
+        "es": "La pizza — me recuerda a las noches de viernes en casa.",
+        "de": "Pizza — sie erinnert mich an Freitagabende zu Hause.",
+        "ru": "Пицца — она напоминает мне о пятничных вечерах дома."
       },
       "category": "general",
       "type": "open",
@@ -36,6 +48,12 @@
         "de": "Was war ein kleiner Moment diese Woche, der dich zum Lächeln brachte?",
         "ru": "Какой маленький момент на этой неделе заставил вас улыбнуться?"
       },
+      "exampleAnswer": {
+        "en": "A friend sent me a funny voice message on Tuesday.",
+        "es": "Un amigo me mandó un audio gracioso el martes.",
+        "de": "Ein Freund hat mir am Dienstag eine lustige Sprachnachricht geschickt.",
+        "ru": "Во вторник друг прислал мне смешное голосовое сообщение."
+      },
       "category": "general",
       "type": "open",
       "level": "intermediate",
@@ -50,6 +68,12 @@
         "de": "Mit wem würdest du am liebsten zu Abend essen?",
         "ru": "С кем бы вы хотели поужинать, если бы могли выбрать кого угодно?"
       },
+      "exampleAnswer": {
+        "en": "My grandmother — I'd love to hear her stories again.",
+        "es": "Mi abuela — me encantaría volver a escuchar sus historias.",
+        "de": "Meine Großmutter — ich würde gerne ihre Geschichten wieder hören.",
+        "ru": "Мою бабушку — я бы снова послушал её истории."
+      },
       "category": "general",
       "type": "open",
       "level": "basic",
@@ -63,6 +87,12 @@
         "es": "¿Qué habilidad te gustaría aprender este año?",
         "de": "Welche Fähigkeit würdest du dieses Jahr gerne lernen?",
         "ru": "Какой навык вы хотели бы освоить в этом году?"
+      },
+      "exampleAnswer": {
+        "en": "I'd love to learn to play the guitar.",
+        "es": "Me gustaría aprender a tocar la guitarra.",
+        "de": "Ich würde gerne Gitarre spielen lernen.",
+        "ru": "Я хотел бы научиться играть на гитаре."
       },
       "category": "general",
       "type": "open",
