@@ -9,36 +9,37 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="app">
+  <div class="app app--setup">
     <div class="glow glow--pink" aria-hidden="true"></div>
     <div class="glow glow--violet" aria-hidden="true"></div>
 
-    <header class="app__header">
+    <header class="app__header app__header--compact">
       <h1 class="logo">Spark</h1>
       <p class="tagline" id="setup-title">Set up your session</p>
     </header>
 
-    <main>
+    <main class="setup-main">
       <section class="section hidden" id="learn-section">
         <p class="label" id="target-lang-label">Language to learn</p>
-        <div class="selector-grid selector-grid--4 mb-md" id="lang-selector"></div>
+        <div id="lang-selector"></div>
 
         <p class="label" id="level-label">Your level</p>
-        <div class="selector-grid" id="level-selector"></div>
+        <div id="level-selector"></div>
+        <p class="level-desc" id="level-desc"></p>
       </section>
 
       <section class="section">
         <p class="label" id="categories-label">Categories</p>
-        <div class="chips" id="category-chips"></div>
+        <div id="category-chips"></div>
       </section>
 
       <section class="section">
         <p class="label" id="timer-label">Session timer</p>
-        <div class="selector-grid" id="timer-selector"></div>
+        <div id="timer-selector"></div>
       </section>
     </main>
 
-    <footer class="app__footer">
+    <footer class="app__footer app__footer--sticky">
       <button type="button" class="btn btn--primary" id="btn-start">Start</button>
     </footer>
   </div>
@@ -64,6 +65,7 @@
 
       const categories = await Spark.loadCategories();
       const categoryContainer = document.getElementById('category-chips');
+      const levelDescEl = document.getElementById('level-desc');
 
       function refreshCategories() {
         SparkSelector.renderCategoryChips(
@@ -116,7 +118,8 @@
             (level) => {
               selectedLevel = level;
               refreshLevel();
-            }
+            },
+            levelDescEl
           );
         }
         refreshLevel();
