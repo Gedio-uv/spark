@@ -10,9 +10,11 @@
 </head>
 <body>
   <div class="app app--game">
-    <button type="button" class="game-exit" id="btn-exit">Stop</button>
     <div id="timer-mount"></div>
     <div class="card-container" id="card-container"></div>
+    <footer class="game-bar">
+      <button type="button" class="game-bar__back" id="btn-back">Back</button>
+    </footer>
   </div>
 
   <script src="app.js"></script>
@@ -28,9 +30,9 @@
         return;
       }
 
-      const exitBtn = document.getElementById('btn-exit');
-      exitBtn.textContent = Spark.t('exitGame');
-      exitBtn.addEventListener('click', () => {
+      const backBtn = document.getElementById('btn-back');
+      backBtn.textContent = Spark.t('gameBack');
+      backBtn.addEventListener('click', () => {
         SparkTimer.stop();
         Spark.navigate('setup.html');
       });
