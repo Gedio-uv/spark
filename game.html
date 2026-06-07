@@ -10,6 +10,7 @@
 </head>
 <body>
   <div class="app app--game">
+    <button type="button" class="game-exit" id="btn-exit">Stop</button>
     <div id="timer-mount"></div>
     <div class="card-container" id="card-container"></div>
   </div>
@@ -26,6 +27,13 @@
         Spark.navigate('setup.html');
         return;
       }
+
+      const exitBtn = document.getElementById('btn-exit');
+      exitBtn.textContent = Spark.t('exitGame');
+      exitBtn.addEventListener('click', () => {
+        SparkTimer.stop();
+        Spark.navigate('setup.html');
+      });
 
       if (prefs.timerMinutes > 0) {
         SparkTimer.create(document.getElementById('timer-mount'), prefs.timerMinutes);

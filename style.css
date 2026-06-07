@@ -408,19 +408,18 @@ a {
 .card {
   width: 100%;
   max-width: var(--max-width);
-  min-height: 70dvh;
+  min-height: 72dvh;
   padding: var(--space-xl) var(--space-lg);
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-card-border);
   background: var(--color-bg-deep);
   display: flex;
   flex-direction: column;
-  justify-content: center;
   position: relative;
   overflow: hidden;
-  touch-action: pan-y;
+  touch-action: none;
   user-select: none;
-  transition: transform 0.25s ease, opacity 0.25s ease;
+  will-change: transform;
 }
 
 .card__glow-violet,
@@ -453,7 +452,16 @@ a {
   display: flex;
   align-items: center;
   gap: var(--space-sm);
-  margin-bottom: var(--space-lg);
+  flex-shrink: 0;
+}
+
+.card__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-lg);
+  padding: var(--space-lg) 0;
 }
 
 .card__category {
@@ -478,19 +486,18 @@ a {
 .card__question {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: clamp(var(--text-lg), 5vw, var(--text-xl));
+  font-size: clamp(1.5rem, 7vw, 2rem);
   color: var(--color-text);
-  line-height: 1.4;
-  margin-bottom: var(--space-md);
+  line-height: 1.35;
 }
 
 .card__translation {
   font-family: var(--font-body);
   font-weight: 300;
   font-style: italic;
-  font-size: var(--text-sm);
+  font-size: clamp(1rem, 4.5vw, 1.125rem);
   color: var(--color-text-translation);
-  line-height: 1.5;
+  line-height: 1.45;
 }
 
 .card__footer {
@@ -504,24 +511,32 @@ a {
   color: rgba(240, 238, 255, 0.25);
 }
 
-.card--swipe-up {
-  transform: translateY(-120%);
-  opacity: 0;
+/* --------------------------------------------------------------------------
+   Game screen controls
+   -------------------------------------------------------------------------- */
+
+.game-exit {
+  position: fixed;
+  top: max(var(--space-md), env(safe-area-inset-top, 0px));
+  right: max(var(--space-md), env(safe-area-inset-right, 0px));
+  z-index: 110;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: background 0.2s, color 0.2s;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.card--swipe-down {
-  transform: translateY(120%);
-  opacity: 0;
-}
-
-.card--swipe-left {
-  transform: translateX(-120%);
-  opacity: 0;
-}
-
-.card--swipe-right {
-  transform: translateX(120%);
-  opacity: 0;
+.game-exit:active {
+  background: rgba(255, 255, 255, 0.14);
+  color: var(--color-text);
 }
 
 /* --------------------------------------------------------------------------
