@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#1A1040">
+  <title>Spark — Setup</title>
+  <link rel="icon" href="assets/icons/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <div class="glow glow--pink" aria-hidden="true"></div>
+    <div class="glow glow--violet" aria-hidden="true"></div>
+
+    <header class="app__header">
+      <h1 class="logo">Spark</h1>
+      <p class="tagline" id="setup-title">Set up your session</p>
+    </header>
+
+    <main>
+      <section class="section hidden" id="learn-section">
+        <p class="label" id="target-lang-label">Language to learn</p>
+        <div class="selector-grid selector-grid--4 mb-md" id="lang-selector"></div>
+
+        <p class="label" id="level-label">Your level</p>
+        <div class="selector-grid" id="level-selector"></div>
+      </section>
+
+      <section class="section">
+        <p class="label" id="categories-label">Categories</p>
+        <div class="chips" id="category-chips"></div>
+      </section>
+
+      <section class="section">
+        <p class="label" id="timer-label">Session timer</p>
+        <div class="selector-grid" id="timer-selector"></div>
+      </section>
+    </main>
+
+    <footer class="app__footer">
+      <button type="button" class="btn btn--primary" id="btn-start">Start</button>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="components/selector.js"></script>
+  <script>
+    (async function () {
+      const prefs = Spark.getPrefs();
+      const params = new URLSearchParams(window.location.search);
+      const showLearn = prefs.mode === 'learn' || params.get('step') === 'learn';
+
+      document.getElementById('setup-title').textContent = Spark.t('setupTitle');
+      document.getElementById('categories-label').textContent = Spark.t('categories');
+      document.getElementById('timer-label').textContent = Spark.t('timer');
+      document.getElementById('btn-start').textContent = Spark.t('startGame');
+
+      let selectedCategories = [...prefs.categories];
+      let selectedLang = prefs.targetLang;
+      let selectedLevel = prefs.level;
+      let selectedTimer = prefs.timerMinutes;
+
+      const categories = await Spark.loadCategories();
+      const categoryContainer = document.getElementById('category-chips');
+
+      function refreshCategories() {
+        SparkSelector.renderCategoryChips(
+          categoryContainer,
+          categories,
+          selectedCategories,
+          (next) => {
+            selectedCategories = next;
+            refreshCategories();
+          }
+        );
+      }
+
+      refreshCategories();
+
+      function refreshTimer() {
+        SparkSelector.renderTimerSelector(
+          document.getElementById('timer-selector'),
+          selectedTimer,
+          (minutes) => {
+            selectedTimer = minutes;
+            refreshTimer();
+          }
+        );
+      }
+      refreshTimer();
+
+      if (showLearn) {
+        document.getElementById('learn-section').classList.remove('hidden');
+        document.getElementById('target-lang-label').textContent = Spark.t('targetLang');
+        document.getElementById('level-label').textContent = Spark.t('level');
+
+        function refreshLang() {
+          SparkSelector.renderLanguageSelector(
+            document.getElementById('lang-selector'),
+            selectedLang,
+            (lang) => {
+              selectedLang = lang;
+              refreshLang();
+            }
+          );
+        }
+        refreshLang();
+
+        function refreshLevel() {
+          SparkSelector.renderLevelSelector(
+            document.getElementById('level-selector'),
+            selectedLevel,
+            (level) => {
+              selectedLevel = level;
+              refreshLevel();
+            }
+          );
+        }
+        refreshLevel();
+      }
+
+      document.getElementById('btn-start').addEventListener('click', async () => {
+        if (selectedCategories.length === 0) {
+          alert(Spark.t('selectCategory'));
+          return;
+        }
+
+        Spark.setPrefs({
+          categories: selectedCategories,
+          targetLang: selectedLang,
+          level: selectedLevel,
+          timerMinutes: selectedTimer,
+        });
+
+        const allQuestions = await Spark.loadQuestions();
+        const filtered = allQuestions.filter((q) =>
+          selectedCategories.includes(q.category)
+        );
+
+        if (filtered.length === 0) {
+          alert(Spark.t('noQuestions'));
+          return;
+        }
+
+        Spark.startSession(filtered);
+        Spark.navigate('game.html');
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+{
+  "questions": [
+    {
+      "id": "q001",
+      "text": {
+        "en": "What's a place you've always wanted to visit?",
+        "es": "¿Qué lugar siempre has querido visitar?",
+        "de": "Welchen Ort wolltest du schon immer besuchen?",
+        "ru": "Какое место вы всегда мечтали посетить?"
+      },
+      "category": "general",
+      "type": "open",
+      "level": "basic",
+      "audience": "all",
+      "feedback": { "dislikes": 0 }
+    },
+    {
+      "id": "q002",
+      "text": {
+        "en": "What's your comfort food and why?",
+        "es": "¿Cuál es tu comida reconfortante y por qué?",
+        "de": "Was ist dein Lieblings-Trostessen und warum?",
+        "ru": "Какая еда вас успокаивает и почему?"
+      },
+      "category": "general",
+      "type": "open",
+      "level": "basic",
+      "audience": "all",
+      "feedback": { "dislikes": 0 }
+    },
+    {
+      "id": "q003",
+      "text": {
+        "en": "What's a small moment from this week that made you smile?",
+        "es": "¿Qué pequeño momento de esta semana te hizo sonreír?",
+        "de": "Was war ein kleiner Moment diese Woche, der dich zum Lächeln brachte?",
+        "ru": "Какой маленький момент на этой неделе заставил вас улыбнуться?"
+      },
+      "category": "general",
+      "type": "open",
+      "level": "intermediate",
+      "audience": "all",
+      "feedback": { "dislikes": 0 }
+    },
+    {
+      "id": "q004",
+      "text": {
+        "en": "If you could have dinner with anyone, who would it be?",
+        "es": "Si pudieras cenar con alguien, ¿con quién sería?",
+        "de": "Mit wem würdest du am liebsten zu Abend essen?",
+        "ru": "С кем бы вы хотели поужинать, если бы могли выбрать кого угодно?"
+      },
+      "category": "general",
+      "type": "open",
+      "level": "basic",
+      "audience": "all",
+      "feedback": { "dislikes": 0 }
+    },
+    {
+      "id": "q005",
+      "text": {
+        "en": "What's a skill you'd love to learn this year?",
+        "es": "¿Qué habilidad te gustaría aprender este año?",
+        "de": "Welche Fähigkeit würdest du dieses Jahr gerne lernen?",
+        "ru": "Какой навык вы хотели бы освоить в этом году?"
+      },
+      "category": "general",
+      "type": "open",
+      "level": "intermediate",
+      "audience": "all",
+      "feedback": { "dislikes": 0 }
+    }
+  ]
+}

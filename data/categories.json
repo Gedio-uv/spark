@@ -1,0 +1,106 @@
+{
+  "categories": [
+    {
+      "id": "general",
+      "name": {
+        "en": "General",
+        "es": "General",
+        "de": "Allgemein",
+        "ru": "Общие"
+      },
+      "description": {
+        "en": "Neutral icebreaker questions. Places, food, travel, memories.",
+        "es": "Preguntas neutras para romper el hielo. Lugares, comida, viajes, recuerdos.",
+        "de": "Neutrale Eisbrecher-Fragen. Orte, Essen, Reisen, Erinnerungen.",
+        "ru": "Нейтральные вопросы для знакомства. Места, еда, путешествия, воспоминания."
+      },
+      "audience": "all",
+      "premium": false
+    },
+    {
+      "id": "would_you_rather",
+      "name": {
+        "en": "Would You Rather",
+        "es": "¿Qué prefieres?",
+        "de": "Was würdest du lieber",
+        "ru": "Что бы вы выбрали"
+      },
+      "description": {
+        "en": "Binary choice questions that spark debate and reasoning.",
+        "es": "Preguntas de elección binaria que generan debate.",
+        "de": "Entweder-oder-Fragen, die Diskussionen anregen.",
+        "ru": "Вопросы с выбором из двух вариантов."
+      },
+      "audience": "all",
+      "premium": false
+    },
+    {
+      "id": "personal_growth",
+      "name": {
+        "en": "Personal Growth",
+        "es": "Crecimiento personal",
+        "de": "Persönliches Wachstum",
+        "ru": "Личностный рост"
+      },
+      "description": {
+        "en": "Reflective questions about fears, dreams, habits, and life lessons.",
+        "es": "Preguntas reflexivas sobre miedos, sueños, hábitos y lecciones de vida.",
+        "de": "Reflektierende Fragen über Ängste, Träume, Gewohnheiten und Lebenslektionen.",
+        "ru": "Вопросы о страхах, мечтах, привычках и жизненных уроках."
+      },
+      "audience": "adults",
+      "premium": true
+    },
+    {
+      "id": "kids_family",
+      "name": {
+        "en": "Kids & Family",
+        "es": "Niños y familia",
+        "de": "Kinder & Familie",
+        "ru": "Дети и семья"
+      },
+      "description": {
+        "en": "Safe-for-all-ages questions about childhood and family values.",
+        "es": "Preguntas aptas para todas las edades sobre infancia y valores familiares.",
+        "de": "Fragen für alle Altersgruppen über Kindheit und Familienwerte.",
+        "ru": "Вопросы для всех возрастов о детстве и семейных ценностях."
+      },
+      "audience": "all",
+      "premium": true
+    },
+    {
+      "id": "couples",
+      "name": {
+        "en": "Couples",
+        "es": "Parejas",
+        "de": "Paare",
+        "ru": "Пары"
+      },
+      "description": {
+        "en": "Questions for romantic partners or people getting to know each other.",
+        "es": "Preguntas para parejas o personas que se están conociendo.",
+        "de": "Fragen für romantische Partner oder Menschen, die sich kennenlernen.",
+        "ru": "Вопросы для романтических пар или знакомящихся людей."
+      },
+      "audience": "adults",
+      "premium": true
+    },
+    {
+      "id": "spicy",
+      "name": {
+        "en": "Spicy 🌶",
+        "es": "Picante 🌶",
+        "de": "Scharf 🌶",
+        "ru": "Острое 🌶"
+      },
+      "description": {
+        "en": "Bold, suggestive questions for adults who want this tone.",
+        "es": "Preguntas atrevidas y sugerentes para adultos.",
+        "de": "Mutige, suggestive Fragen für Erwachsene.",
+        "ru": "Смелые, провокационные вопросы для взрослых."
+      },
+      "audience": "adults",
+      "premium": true
+    }
+  ]
+}

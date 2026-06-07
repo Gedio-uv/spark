@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#1A1040">
+  <title>Spark — Session End</title>
+  <link rel="icon" href="assets/icons/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <div class="glow glow--pink" aria-hidden="true"></div>
+    <div class="glow glow--violet" aria-hidden="true"></div>
+
+    <main class="end-screen">
+      <img src="assets/icons/logo.svg" alt="" class="end-screen__icon" width="64" height="64">
+      <h1 class="end-screen__title" id="end-title">Time's up!</h1>
+      <p class="end-screen__stats" id="end-stats"></p>
+
+      <div class="btn-group mt-lg">
+        <button type="button" class="btn btn--primary" id="btn-again">Play again</button>
+        <button type="button" class="btn btn--secondary" id="btn-categories">Change categories</button>
+        <button type="button" class="btn btn--secondary" id="btn-home">Home</button>
+      </div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    (function () {
+      const session = Spark.getSession();
+      const params = new URLSearchParams(window.location.search);
+      const reason = params.get('reason');
+
+      const titleEl = document.getElementById('end-title');
+      if (reason === 'complete') {
+        titleEl.textContent = 'Great session!';
+      } else {
+        titleEl.textContent = Spark.t('sessionEnd');
+      }
+
+      const count = session ? session.count : 0;
+      document.getElementById('end-stats').textContent =
+        `${count} ${Spark.t('questionsPlayed')}`;
+
+      document.getElementById('btn-again').textContent = Spark.t('playAgain');
+      document.getElementById('btn-categories').textContent = Spark.t('changeCategories');
+      document.getElementById('btn-home').textContent = Spark.t('goHome');
+
+      document.getElementById('btn-again').addEventListener('click', async () => {
+        const prefs = Spark.getPrefs();
+        const allQuestions = await Spark.loadQuestions();
+        const filtered = allQuestions.filter((q) =>
+          prefs.categories.includes(q.category)
+        );
+        Spark.startSession(filtered);
+        Spark.navigate('game.html');
+      });
+
+      document.getElementById('btn-categories').addEventListener('click', () => {
+        Spark.navigate('setup.html');
+      });
+
+      document.getElementById('btn-home').addEventListener('click', () => {
+        Spark.navigate('index.html');
+      });
+    })();
+  </script>
+</body>
+</html>

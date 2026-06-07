@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#1A1040">
+  <title>Spark — Game</title>
+  <link rel="icon" href="assets/icons/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app app--game">
+    <div id="timer-mount"></div>
+    <div class="card-container" id="card-container"></div>
+  </div>
+
+  <script src="app.js"></script>
+  <script src="components/card.js"></script>
+  <script src="components/timer.js"></script>
+  <script>
+    (async function () {
+      const prefs = Spark.getPrefs();
+      const session = Spark.getSession();
+
+      if (!session) {
+        Spark.navigate('setup.html');
+        return;
+      }
+
+      if (prefs.timerMinutes > 0) {
+        SparkTimer.create(document.getElementById('timer-mount'), prefs.timerMinutes);
+      }
+
+      const allQuestions = await Spark.loadQuestions();
+      const categories = await Spark.loadCategories();
+      const questionMap = Object.fromEntries(allQuestions.map((q) => [q.id, q]));
+      const poolSize = session.pool.length;
+
+      const container = document.getElementById('card-container');
+
+      function showNext() {
+        const nextId = Spark.getNextQuestionId(session);
+        if (!nextId) {
+          Spark.navigate('end.html?reason=complete');
+          return;
+        }
+
+        const question = questionMap[nextId];
+        if (!question) {
+          showNext();
+          return;
+        }
+
+        container.innerHTML = '';
+        const cardEl = SparkCard.render(
+          container,
+          question,
+          categories,
+          session.count,
+          poolSize
+        );
+
+        SparkCard.attachSwipeHandlers(
+          cardEl,
+          showNext,
+          () => {
+            Spark.logDislike(question.id);
+            showNext();
+          }
+        );
+      }
+
+      showNext();
+    })();
+  </script>
+</body>
+</html>

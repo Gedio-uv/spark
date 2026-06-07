@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Spark — Real conversations. A social card game with optional language learning.">
+  <meta name="theme-color" content="#1A1040">
+  <title>Spark — Real conversations</title>
+  <link rel="icon" href="assets/icons/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <div class="glow glow--pink" aria-hidden="true"></div>
+    <div class="glow glow--violet" aria-hidden="true"></div>
+
+    <header class="app__header">
+      <img src="assets/icons/logo.svg" alt="" class="logo__icon" width="40" height="40">
+      <h1 class="logo">Spark</h1>
+      <p class="tagline" id="tagline">Real conversations</p>
+    </header>
+
+    <main>
+      <section class="section">
+        <h2 class="heading" id="mode-title">How do you want to play?</h2>
+
+        <div class="btn-group">
+          <button type="button" class="btn btn--primary" id="btn-play">
+            <span id="mode-play-label">Just play</span>
+          </button>
+          <p class="subheading text-center" id="mode-play-desc">Social conversation game in your language</p>
+
+          <button type="button" class="btn btn--secondary" id="btn-learn">
+            <span id="mode-learn-label">Learn a language</span>
+          </button>
+          <p class="subheading text-center" id="mode-learn-desc">Practice while you play with progressive immersion</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app__footer">
+      <a href="#" class="settings-link hidden" id="settings-link">Change mode</a>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    (function () {
+      const prefs = Spark.getPrefs();
+
+      document.getElementById('tagline').textContent = Spark.t('tagline');
+      document.getElementById('mode-title').textContent = Spark.t('modeTitle');
+      document.getElementById('mode-play-label').textContent = Spark.t('modePlay');
+      document.getElementById('mode-play-desc').textContent = Spark.t('modePlayDesc');
+      document.getElementById('mode-learn-label').textContent = Spark.t('modeLearn');
+      document.getElementById('mode-learn-desc').textContent = Spark.t('modeLearnDesc');
+
+      if (Spark.isOnboardingComplete()) {
+        const link = document.getElementById('settings-link');
+        link.textContent = Spark.t('settings');
+        link.classList.remove('hidden');
+        link.href = '#';
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          Spark.resetOnboarding();
+          Spark.navigate('setup.html');
+        });
+      }
+
+      document.getElementById('btn-play').addEventListener('click', () => {
+        Spark.setPrefs({ mode: 'play', nativeLang: Spark.getDeviceLanguage() });
+        Spark.completeOnboarding();
+        Spark.navigate('setup.html');
+      });
+
+      document.getElementById('btn-learn').addEventListener('click', () => {
+        Spark.setPrefs({
+          mode: 'learn',
+          nativeLang: Spark.getDeviceLanguage(),
+        });
+        Spark.completeOnboarding();
+        Spark.navigate('setup.html?step=learn');
+      });
+    })();
+  </script>
+</body>
+</html>
