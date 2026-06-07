@@ -41,7 +41,7 @@ const SparkSelector = (() => {
       btn.className = chipClass(selected === lang, 'chip--lang');
       btn.dataset.lang = lang;
       const name = LANG_NAMES[lang][uiLang] || LANG_NAMES[lang].en;
-      btn.innerHTML = `<span class="chip__flag" aria-hidden="true">${LANG_FLAGS[lang]}</span><span>${name}</span>`;
+      btn.innerHTML = `<span class="chip__flag" aria-hidden="true">${LANG_FLAGS[lang]}</span><span class="chip__name">${name}</span>`;
       btn.addEventListener('click', () => onChange(lang));
       container.appendChild(btn);
     });
@@ -106,7 +106,11 @@ const SparkSelector = (() => {
       btn.dataset.category = cat.id;
 
       if (isLocked) {
-        btn.innerHTML = `<span class="chip__label">${name}</span><span class="chip__premium">${Spark.t('premiumLabel')}</span>`;
+        btn.innerHTML = `
+          <span class="chip__stack">
+            <span class="chip__label">${name}</span>
+            <span class="chip__premium">${Spark.t('premiumLabel')}</span>
+          </span>`;
         btn.addEventListener('click', () => onLockedClick(cat));
       } else {
         btn.innerHTML = `<span class="chip__label">${name}</span>`;

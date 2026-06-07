@@ -353,30 +353,42 @@ a {
 }
 
 .chip--locked {
-  opacity: 0.55;
+  opacity: 0.5;
   cursor: pointer;
+  pointer-events: auto;
+}
+
+.chip__stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
 }
 
 .chip__premium {
-  font-size: 9px;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: none;
   color: var(--color-primary-soft);
-  background: rgba(124, 58, 237, 0.15);
-  border: 1px solid rgba(167, 139, 250, 0.25);
-  border-radius: 4px;
-  padding: 2px 6px;
-  margin-left: var(--space-xs);
-  flex-shrink: 0;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  line-height: 1.2;
+  opacity: 0.85;
 }
 
 .chip__label {
   line-height: 1.3;
 }
 
+.chip__name {
+  line-height: 1.2;
+}
+
 .chip__flag {
-  font-size: 1.1em;
+  font-size: 1.15em;
   line-height: 1;
 }
 
@@ -394,6 +406,14 @@ a {
 
 .app--setup .label {
   margin-bottom: calc(var(--space-sm) * 0.7);
+}
+
+.app--setup .section--categories {
+  margin-bottom: var(--space-md);
+}
+
+.app--setup .section--timer {
+  margin-bottom: calc(var(--space-xl) * 0.7);
 }
 
 .app--setup .setup-main {
@@ -447,11 +467,13 @@ a {
 .chip--lang {
   display: inline-flex;
   align-items: center;
-  padding: 8px 14px;
+  padding: 11px 18px;
+  border-radius: 999px;
   font-size: var(--text-sm);
   white-space: nowrap;
   flex-shrink: 0;
-  gap: 6px;
+  gap: 8px;
+  min-height: 40px;
 }
 
 .chip--level {
@@ -474,6 +496,8 @@ a {
 .level-desc {
   font-family: var(--font-body);
   font-size: var(--text-sm);
+  font-weight: 300;
+  font-style: italic;
   color: var(--color-text-muted);
   line-height: 1.45;
   margin-top: calc(var(--space-sm) * 0.7);
@@ -498,7 +522,9 @@ a {
 
 .chips--categories .chip--locked {
   border-style: dashed;
-  border-color: rgba(167, 139, 250, 0.2);
+  border-color: rgba(167, 139, 250, 0.18);
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .app--setup .chip--selected {
