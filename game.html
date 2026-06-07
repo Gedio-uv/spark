@@ -6,18 +6,18 @@
   <meta name="theme-color" content="#1A1040">
   <title>Spark — Game</title>
   <link rel="icon" href="assets/icons/logo.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=3">
 </head>
 <body>
   <div class="app app--game">
     <div id="timer-mount"></div>
     <div class="card-container" id="card-container"></div>
     <footer class="game-bar">
-      <button type="button" class="game-bar__back" id="btn-back">Back</button>
+      <button type="button" class="game-bar__back" id="btn-back" aria-label="Back">Back</button>
     </footer>
   </div>
 
-  <script src="app.js"></script>
+  <script src="app.js?v=3"></script>
   <script src="components/card.js"></script>
   <script src="components/timer.js"></script>
   <script>
@@ -30,9 +30,7 @@
         return;
       }
 
-      const backBtn = document.getElementById('btn-back');
-      backBtn.textContent = Spark.t('gameBack');
-      backBtn.addEventListener('click', () => {
+      document.getElementById('btn-back').addEventListener('click', () => {
         SparkTimer.stop();
         Spark.navigate('setup.html');
       });

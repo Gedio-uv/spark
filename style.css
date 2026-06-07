@@ -101,6 +101,11 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+body:has(.app--game) {
+  overflow: hidden;
+  height: 100dvh;
+}
+
 img,
 svg {
   display: block;
@@ -137,9 +142,10 @@ a {
 .app--game {
   padding: 0;
   max-width: none;
-  min-height: 100dvh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .app__header {
@@ -411,8 +417,8 @@ a {
 .card {
   width: 100%;
   max-width: var(--max-width);
-  max-height: calc(100dvh - 5.5rem - env(safe-area-inset-bottom, 0px));
-  min-height: min(68dvh, calc(100dvh - 5.5rem - env(safe-area-inset-bottom, 0px)));
+  max-height: calc(100dvh - 6.5rem - env(safe-area-inset-bottom, 16px));
+  min-height: min(68dvh, calc(100dvh - 6.5rem - env(safe-area-inset-bottom, 16px)));
   padding: var(--space-xl) var(--space-lg);
   border-radius: var(--radius-lg);
   border: 1px solid var(--color-card-border);
@@ -555,26 +561,31 @@ a {
 
 .game-bar {
   flex-shrink: 0;
+  width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
   padding: var(--space-md) var(--space-lg);
-  padding-bottom: calc(var(--space-lg) + env(safe-area-inset-bottom, 0px));
-  background: linear-gradient(to top, var(--color-bg-deep) 70%, transparent);
+  padding-bottom: calc(var(--space-xl) + env(safe-area-inset-bottom, 16px));
+  background: var(--color-bg-deep);
+  border-top: 1px solid rgba(167, 139, 250, 0.12);
   z-index: 110;
 }
 
 .game-bar__back {
-  padding: 12px 28px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+  min-height: 44px;
+  padding: 12px 32px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(167, 139, 250, 0.35);
   font-family: var(--font-body);
   font-weight: 400;
   font-size: var(--text-base);
-  color: var(--color-text-muted);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  color: var(--color-text);
   -webkit-tap-highlight-color: transparent;
 }
 
