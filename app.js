@@ -53,6 +53,9 @@ const Spark = (() => {
       goHome: 'Home',
       noQuestions: 'No questions available for your selection.',
       selectCategory: 'Select at least one category.',
+      comingSoonTitle: 'Coming soon',
+      comingSoonMessage: '{name} is on the way — we\'re adding new question packs soon.',
+      comingSoonClose: 'Got it',
     },
     es: {
       tagline: 'Conversaciones reales',
@@ -83,6 +86,9 @@ const Spark = (() => {
       goHome: 'Inicio',
       noQuestions: 'No hay preguntas disponibles.',
       selectCategory: 'Selecciona al menos una categoría.',
+      comingSoonTitle: 'Próximamente',
+      comingSoonMessage: '{name} llegará pronto — estamos preparando nuevos packs de preguntas.',
+      comingSoonClose: 'Entendido',
     },
     de: {
       tagline: 'Echte Gespräche',
@@ -113,6 +119,9 @@ const Spark = (() => {
       goHome: 'Startseite',
       noQuestions: 'Keine Fragen verfügbar.',
       selectCategory: 'Wähle mindestens eine Kategorie.',
+      comingSoonTitle: 'Demnächst',
+      comingSoonMessage: '{name} kommt bald — wir bereiten neue Fragenpakete vor.',
+      comingSoonClose: 'Verstanden',
     },
     ru: {
       tagline: 'Настоящие разговоры',
@@ -143,6 +152,9 @@ const Spark = (() => {
       goHome: 'Главная',
       noQuestions: 'Нет доступных вопросов.',
       selectCategory: 'Выберите хотя бы одну категорию.',
+      comingSoonTitle: 'Скоро',
+      comingSoonMessage: '{name} скоро появится — мы готовим новые наборы вопросов.',
+      comingSoonClose: 'Понятно',
     },
   };
 

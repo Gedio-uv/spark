@@ -58,7 +58,7 @@ const SparkSelector = (() => {
     });
   }
 
-  function renderCategoryChips(container, categories, selected, onChange) {
+  function renderCategoryChips(container, categories, selected, onChange, onLockedClick) {
     container.innerHTML = '';
     const disabled = Spark.applyCategoryExclusion(selected);
     const lang = Spark.getPrefs().nativeLang;
@@ -80,7 +80,9 @@ const SparkSelector = (() => {
       btn.title = Spark.localizedText(cat.description, lang);
       btn.dataset.category = cat.id;
 
-      if (!isDisabled && !isLocked) {
+      if (isLocked) {
+        btn.addEventListener('click', () => onLockedClick(cat));
+      } else if (!isDisabled) {
         btn.addEventListener('click', () => {
           const next = isSelected
             ? selected.filter((id) => id !== cat.id)
